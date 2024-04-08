@@ -15,8 +15,6 @@
 # @example
 #   include teched_hello_world::website
 class teched_hello_world::website {
-  include apache
-
   file { '/var/www/':
     ensure => directory,
     before => [File['index.html'], File['css-directory'], File['img-directory'], File['js-directory']],
@@ -47,10 +45,5 @@ class teched_hello_world::website {
     path    => '/var/www/html/js/',
     source  => 'puppet:///modules/teched_hello_world/js',
     recurse => true,
-  }
-
-  apache::vhost { 'hello_world':
-    port    => 80,
-    docroot => '/var/www/html',
   }
 }
